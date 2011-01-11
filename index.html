@@ -4,99 +4,12 @@
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 		<title>Is Doug pooping?</title>
-		<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js">
-		</script>
-		<script type="text/javascript">
-		  var yesOptions = [
-		    "Give him a call and ask how it's going!",
-		    "Yep!",
-		    "Yes! :D",
-		    "Awwwwwwwww yeahhhhhhh!"
-		  ];
-		  var noOptions = [
-		    "No :(",
-		    "Sadly no...",
-		    "No, but he can't hold out forever",
-		    "No. Stay vigilant, friend!",
-		    "It's bound to come out sooner or later..."
-		  ];
-		
-		  var maxPoopTimeInMinutes = 10;
-		  var minPoopTimeInMinutes = 5;
-		  var poopTimeInMinutes = minPoopTimeInMinutes + (Math.random() * (maxPoopTimeInMinutes - minPoopTimeInMinutes));
-		  var poopTimeInMilliseconds = poopTimeInMinutes * 60 * 1000;
-		  
-			$(document).ready( function() {
-				$.ajax({
-				  url:'http://api.twitter.com/1/statuses/user_timeline.json?callback=?',
-				  data:{
-				    screen_name:'isdougpooping'
-				  },
-				  success:parseTweets,
-				  dataType:'json'
-				});
-			});
-			
-			function parseTweets(data)
-			{
-			  var lastTweet = data[0];
-			  
-			  if(lastTweet.error)
-			  {
-			    $('#poopingStatus').html(lastTweet.error);
-			    return;
-			  }
-			  
-			  var createdAtDate = new Date(lastTweet.created_at);
-			  var currentDate = new Date();
-			  var timeDiffInMilliseconds = currentDate.getTime() - createdAtDate.getTime();
-        
-        if(poopTimeInMilliseconds > timeDiffInMilliseconds)
-        {
-          $('#poopingStatus').html(yesOptions[Math.floor(Math.random() * (yesOptions.length))] + '<br/><span style="font-size:18px">@<a href="http://twitter.com/' + lastTweet.user.screen_name + '">' + lastTweet.user.screen_name + "</a>: " + lastTweet.text + '</span>');
-        }
-        else
-        {
-          var hour = createdAtDate.getHours() > 11 ? createdAtDate.getHours() - 12 : createdAtDate.getHours();
-          var am = createdAtDate.getHours() < 12;
-          if(hour == 0) hour = 12;
-          $('#poopingStatus').html(noOptions[Math.floor(Math.random() * (noOptions.length))] + '<br/><span style="font-size:18px">Last poop at ' + hour.toString() + ':' + (createdAtDate.getMinutes() < 10 ? '0' + createdAtDate.getMinutes() : createdAtDate.getMinutes()) + (am ? ' AM' : ' PM') + ' on ' + (createdAtDate.getMonth() + 1) + '/' + createdAtDate.getDate() + '/' + createdAtDate.getFullYear() + '</span>');
-        }
-			}
-		</script>
-		<style>
-		  body,html
-		  {
-		    padding:0px;
-		    margin:0px;
-		  }
-		  #poopingStatus
-		  {
-		    font-size:72px;
-		    height:80px;
-		    width:100%;
-		    text-align:center;
-		    position:absolute;
-		    top:50%;
-		    margin-top:-40px;
-		  }
-	
-		</style>
-		<script type="text/javascript">
-
-		 var _gaq = _gaq || [];
-		 _gaq.push(['_setAccount', 'UA-3392624-6']);
-		 _gaq.push(['_trackPageview']);
-
-		 (function() {
-		    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-		    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-		    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-		 })();
-
-	      </script>
+		<link rel="stylesheet" href="css/style.css" type="text/css"></link>
+		<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js"></script>
+		<script type="text/javascript" src="js/poopCheck.js"></script>
+		<script type="text/javascript" src="js/ga.js"></script>
 	</head>
 	<body>
-		<div id="poopingStatus">Checking...</div>
+    <div id="poopingStatus">Checking...</div>
 	</body>
 </html>

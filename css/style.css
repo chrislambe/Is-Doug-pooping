@@ -1,0 +1,15 @@
+body,html
+{
+  padding:0px;
+  margin:0px;
+}
+#poopingStatus
+{
+  font-size:72px;
+  height:80px;
+  width:100%;
+  text-align:center;
+  position:absolute;
+  top:50%;
+  margin-top:-40px;
+}
